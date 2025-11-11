@@ -7,6 +7,7 @@ import utez.edu.mx.server.user.model.User;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3001"})
 @RestController
 @RequestMapping("/user")
 public class UserController {
