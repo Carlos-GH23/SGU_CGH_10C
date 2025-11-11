@@ -1,68 +1,85 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Base clara */
+@layer base {
+  html, body, #root { height: 100%; }
+  body { @apply bg-slate-50 text-slate-800 antialiased; }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Animación del toast */
+@keyframes toast-in {
+  0% { transform: translateY(-8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* === Custom utilities (Tailwind v4 usa @utility) === */
+@utility card {
+  @apply bg-white rounded-2xl shadow-sm ring-1 ring-slate-200;
+}
+@utility card-header {
+  @apply flex items-baseline justify-between px-6 py-4 border-b border-slate-200;
+}
+@utility muted {
+  @apply text-slate-500 text-sm;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+@utility btn {
+  @apply inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium border border-slate-300 bg-white hover:bg-slate-50 transition;
+}
+@utility btn-primary {
+  @apply border-transparent bg-blue-600 text-white hover:bg-blue-700;
+}
+@utility btn-ghost {
+  @apply border-transparent bg-transparent hover:bg-slate-100;
+}
+@utility btn-sm {
+  @apply px-3 py-1.5 text-xs rounded-lg;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+@utility input {
+  @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm outline-none focus:ring-4 focus:ring-blue-100 focus:border-blue-500;
 }
-button:hover {
-  border-color: #646cff;
+@utility label {
+  @apply text-xs font-medium text-slate-600;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+@utility error {
+  @apply text-xs text-red-600 mt-1;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+@utility table {
+  @apply w-full;
 }
+@utility th {
+  @apply text-left text-xs font-semibold text-slate-500 uppercase tracking-wide border-b border-slate-200 px-4 py-3 bg-slate-50;
+}
+@utility td {
+  @apply border-b border-slate-200 px-4 py-3 text-sm;
+}
+
+@utility toast {
+  @apply fixed top-4 right-4 z-50 rounded-xl shadow-lg ring-1 ring-slate-200 bg-white px-4 py-3 text-sm flex items-center;
+  animation: toast-in .18s ease-out;
+}
+@utility modal-overlay {
+  @apply fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-6;
+}
+@utility modal {
+  @apply w-full max-w-2xl card;
+}
+
+/* Drawer (form lateral) */
+@utility drawer-overlay {
+  @apply fixed inset-0 bg-black/30 backdrop-blur-sm;
+}
+@utility drawer-panel {
+  @apply fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-xl ring-1 ring-slate-200;
+}
+
+/* Animación y helpers para panel lateral de edición */
+@keyframes panel-in {
+  0% { opacity: 0; transform: translateX(16px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@utility animate-panel-in { animation: panel-in .22s ease-out; }
+@utility sticky-panel { @apply h-fit lg:sticky lg:top-24; }
+
