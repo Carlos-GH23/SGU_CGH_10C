@@ -1,13 +1,22 @@
 package utez.edu.mx.server.user.control;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import utez.edu.mx.server.user.model.User;
-
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3001"})
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import utez.edu.mx.server.user.model.User;
+
+@CrossOrigin(origins = {"https://localhost:5173", "https://localhost:3001", "http://localhost:5173", "http://localhost:3001"})
 @RestController
 @RequestMapping("/user")
 public class UserController {
